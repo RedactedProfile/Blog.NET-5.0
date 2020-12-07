@@ -13,7 +13,7 @@ namespace BlogDotNet50.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost;database=dotnetblog;user=root;password=toor");
+            //optionsBuilder.UseMySql("server=localhost;database=dotnetblog;user=root;password=toor");
         }
     }
 
