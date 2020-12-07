@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 
 namespace BlogDotNet50
 {
@@ -24,6 +26,7 @@ namespace BlogDotNet50
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContextPool<Models.BlogContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,7 +13,17 @@ namespace BlogDotNet50.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseMySql("server=localhost;database=dotnetblog;user=root;password=toor");
+            optionsBuilder.UseMySql(
+                        // Replace with your connection string.
+                        "server=localhost;user=root;password=toor;database=dotnetblog",
+                        // Replace with your server version and type.
+                        // For common usages, see pull request #1233.
+                        new MySqlServerVersion(new Version(8, 0, 21)), // use MariaDbServerVersion for MariaDB
+                        mySqlOptions => mySqlOptions
+                            .CharSetBehavior(Pomelo.EntityFrameworkCore.MySql.Infrastructure.CharSetBehavior.NeverAppend))
+                    // Everything from this point on is optional but helps with debugging.
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors();
         }
     }
 
