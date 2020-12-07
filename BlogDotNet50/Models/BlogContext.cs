@@ -8,9 +8,12 @@ namespace BlogDotNet50.Models
 {
     public class BlogContext : DbContext
     {
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Post> Posts { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;database=dotnetblog;user=root;password=toor");
+            optionsBuilder.UseMySQL("server=localhost;database=dotnetblog;user=root;password=toor");
         }
     }
 
