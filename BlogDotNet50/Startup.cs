@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogDotNet50.Data;
+using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 
@@ -25,8 +27,22 @@ namespace BlogDotNet50
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDbContext<BlogContext>();
+            services.AddDbContextPool<BlogContext>(
+                dbContextOptions => dbContextOptions
+                .UseMySql(
+                        // Replace with your connection string.
+                        "server=localhost;user=root;password=toor;database=dotnetblog",
+                        // Replace with your server version and type.
+                        // For common usages, see pull request #1233.
+                        new MySqlServerVersion(new Version(8, 0, 21)), // use MariaDbServerVersion for MariaDB
+                        mySqlOptions => mySqlOptions
+                            .CharSetBehavior(CharSetBehavior.NeverAppend))
+                    // Everything from this point on is optional but helps with debugging.
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors()
+            );
             services.AddControllersWithViews();
-            services.AddDbContextPool<Models.BlogContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
