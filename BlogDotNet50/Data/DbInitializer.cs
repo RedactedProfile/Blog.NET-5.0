@@ -28,8 +28,8 @@ namespace BlogDotNet50.Data
 
             var posts = new Post[]
             {
-                new Post { Title="First Post", AuthorID=1, Content="First post test" },
-                new Post { Title="Second Post", AuthorID=1, Content="Second post test" },
+                new Post { Title="First Post", AuthorID=1, Content="First post test", DateCreated=DateTime.Now.AddDays(-45), DatePublished=DateTime.Now.AddDays(-44), DateUpdated = DateTime.Now },
+                new Post { Title="Second Post", AuthorID=1, Content="Second post test", DateCreated=DateTime.Now.AddDays(-25), DatePublished=DateTime.Now.AddDays(-6), DateUpdated = DateTime.Now  },
             };
             foreach (Post p in posts)
             {

@@ -13,7 +13,7 @@
                 {
                     <li>
                         <a asp-route="ReadArticle" asp-route-id="@post.ID">@post.Title</a>
-                        <span class="float-right">21 March, 2014</span>
+                        <span class="float-right">@post.DatePublished.ToShortDateString()</span>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
                         <p><a asp-route="ByAuthor" asp-route-id="@post.Author.ID">~@post.Author.Display</a></p>
                     </li>
