@@ -23,6 +23,7 @@ namespace BlogDotNet50.Controllers
             _context = context;
         }
 
+        [Route("", Name = "Home")]
         public IActionResult Index()
         {
             var posts = _context.Posts.Include(p => p.Author).ToList();
@@ -48,8 +49,27 @@ namespace BlogDotNet50.Controllers
             return View(viewModel);
         }
 
-        [Route("privacy", Name = "PrivacyPolicy")]
-        public IActionResult Privacy()
+        [Route("author/{id:int:min(1)}", Name = "ByAuthor")]
+        public IActionResult ByAuthor(int id)
+        {
+            var author = _context.Authors.Find(id);
+            var posts = _context.Posts.Include(p => p.Author).Where(p => p.Author == author).ToList();
+            dynamic viewModel = new ExpandoObject();
+            viewModel.Author = author;
+            viewModel.Posts = posts;
+            
+            return View(viewModel);
+        }
+
+
+        [Route("archives", Name = "Archives")]
+        public IActionResult Archive()
+        {
+            return View();
+        }
+
+        [Route("about", Name = "AboutMe")]
+        public IActionResult AboutMe()
         {
             return View();
         }
