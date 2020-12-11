@@ -26,7 +26,7 @@ namespace BlogDotNet50.Controllers
         [Route("", Name = "Home")]
         public IActionResult Index()
         {
-            var posts = _context.Posts.Include(p => p.Author).ToList();
+            var posts = _context.Posts.Include(p => p.Author).OrderByDescending(p => p.DatePublished).ToList();
             dynamic viewModel = new ExpandoObject();
             viewModel.Posts = posts;
             return View(viewModel);
