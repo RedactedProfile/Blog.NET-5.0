@@ -1,9 +1,12 @@
-﻿@{
+﻿@model dynamic   
+@{
     ViewData["Title"] = "About Us";
 }
 <h1>@ViewData["Title"]</h1>
 <div class="container">
     <div class="row">
+        @foreach (Author author in Model.Authors)
+        {
         <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
             <div class="card card-inverse card-info">
                 <img class="card-img-top" src="https://picsum.photos/200/150/?random">
@@ -11,7 +14,7 @@
                     <figure class="profile">
                         <img src="https://picsum.photos/200/150/?random" class="profile-avatar" alt="">
                     </figure>
-                    <h4 class="card-title mt-3">Tawshif Ahsan Khan</h4>
+                    <h4 class="card-title mt-3">@author.Display</h4>
                     <div class="meta card-text">
                         <a>Friends</a>
                     </div>
@@ -21,9 +24,10 @@
                 </div>
                 <div class="card-footer">
                     <small>Last post 3 mins ago</small>
-                    <button class="btn btn-info float-right btn-sm">My Posts</button>
+                    <a class="btn btn-info float-right btn-sm" asp-route="ByAuthor" asp-route-id="@author.ID">My Posts</a>
                 </div>
             </div>
         </div>
+        }
     </div>
 </div>

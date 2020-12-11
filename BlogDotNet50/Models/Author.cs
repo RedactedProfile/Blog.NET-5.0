@@ -10,6 +10,10 @@ namespace BlogDotNet50.Models
     {
         public int ID { get; set; }
         public string Display { get; set; }
+        public string Bio { get; set; }
+        public string Avatar { get; set; }
+        public string Banner { get; set; }
+
         public List<Post> Posts { get; set; }
     }
 }

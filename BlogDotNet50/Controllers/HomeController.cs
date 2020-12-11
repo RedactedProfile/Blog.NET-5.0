@@ -68,10 +68,14 @@ namespace BlogDotNet50.Controllers
             return View();
         }
 
-        [Route("about", Name = "AboutMe")]
+        [Route("about", Name = "About")]
         public IActionResult AboutMe()
         {
-            return View();
+            var authors = _context.Authors.ToList();
+            dynamic viewModel = new ExpandoObject();
+            viewModel.Authors = authors;
+
+            return View(viewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
