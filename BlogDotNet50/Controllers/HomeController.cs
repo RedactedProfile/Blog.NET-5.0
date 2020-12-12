@@ -71,7 +71,7 @@ namespace BlogDotNet50.Controllers
         [Route("about", Name = "About")]
         public IActionResult AboutMe()
         {
-            var authors = _context.Authors.ToList();
+            var authors = _context.Authors.Include(a => a.Posts.OrderByDescending(p => p.DatePublished).FirstOrDefault()).ToList();
             dynamic viewModel = new ExpandoObject();
             viewModel.Authors = authors;
 
